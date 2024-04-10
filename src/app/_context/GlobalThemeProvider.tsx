@@ -1,7 +1,7 @@
 'use client';
 
 import { ThemeProvider } from "next-themes";
-import { darkGlobalTheme, lightGlobalTheme } from "../_styles/globals.css";
+import { darkGlobalTheme, lightGlobalTheme } from "../_styles/globalTheme.css";
 
 const GlobalThemeProvider = ({ children }: { children: React.ReactNode }) => {
   return (
