@@ -1,4 +1,4 @@
-import DarkModeBtn from '@/app/_component/DarkModeBtn';
+import DarkModeBtn from '@/app/_components/DarkModeBtn';
 import NavBar from './NavBar';
 import Profile from './Profile';
 

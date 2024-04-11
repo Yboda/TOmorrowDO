@@ -1,11 +1,11 @@
-import Header from './_component/Header';
-import NavBar from './_component/NavBar';
-
+import Header from './_components/Header';
+import NavBar from './_components/NavBar';
+import * as style from './_styles/layout.css'
 export default function MainLayout({ children }: { children: React.ReactNode }) {
   return (
-    <>
+    <div className={style.container}>
       <Header />
       <div>{children}</div>
-    </>
+    </div>
   );
 }

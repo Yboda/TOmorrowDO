@@ -1,10 +1,22 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Noto_Sans_KR, Gasoek_One } from 'next/font/google';
 import './_styles/reset.css';
 import './_styles/globalTheme.css';
-import GlobalThemeProvider from './_context/GlobalThemeProvider';
+import GlobalThemeProvider from './_contexts/GlobalThemeProvider';
 
-const inter = Inter({ subsets: ['latin'] });
+export const noto = Noto_Sans_KR({
+  display: 'swap',
+  weight: ['400', '500', '700'],
+  subsets: ['latin'],
+  variable: '--font-noto-sans-kr',
+});
+export const gasoek = Gasoek_One({
+  display: 'swap',
+  weight: ['400'],
+  subsets: ['latin'],
+  variable: '--font-gasoek-one',
+});
+
 
 export const metadata: Metadata = {
   title: 'TOmorrowDO',
@@ -17,8 +29,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en' suppressHydrationWarning>
-      <body className={inter.className}>
+    <html lang='ko' className={`${noto.variable} ${gasoek.variable}`} suppressHydrationWarning>
+      <body>
         <GlobalThemeProvider>
           <div>{children}</div>
         </GlobalThemeProvider>

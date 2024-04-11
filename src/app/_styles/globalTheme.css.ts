@@ -1,4 +1,4 @@
-import { darkThemeColors, globalThemeColors, lightThemeColors } from './variable.css';
+import { darkThemeColors, globalThemeColors, lightThemeColors, vars } from './variable.css';
 import {
   createTheme,
   globalStyle,
@@ -24,7 +24,7 @@ globalStyle('html, body', {
   overflowX: 'hidden',
 });
 globalStyle('body', {
-  backgroundColor: globalThemeColors.bgColor,
+  backgroundColor: globalThemeColors.fgColor,
   color: globalThemeColors.fontColor,
 });
 globalStyle('a', {
