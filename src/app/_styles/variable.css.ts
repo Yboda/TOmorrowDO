@@ -2,57 +2,67 @@ import { createGlobalTheme, createGlobalThemeContract } from "@vanilla-extract/c
 
 // 테마용 컬러
 export enum ThemeColors {
-  POINT = '#f98e2c',
-  SUB = '#ffa823',
-  FG = '#fcd8a6',
-  BG = '#FFFAF3',
   BLACK = '#111',
   WHITE = '#fff',
+  POINT = '#f98e2c',
+  BG_POINT = '#fcd8a6',
+  BG_YELLOW = '#fffaf3',
+  FONT = '#666',
 }
 
 export const globalThemeColors = createGlobalThemeContract({
-  baseColor: 'base-color',
   bgColor: 'bg-color',
+  bgColor_point: 'bg-color_point',
+  bgColor_yellow: 'bg-color_yellow',
   fgColor: 'fg-color',
   pColor: 'p-color',
-  sColor: 's-color',
   fontColor: 'font-color',
+  sFontColor: 's-font-color',
 });
 
 export const lightThemeColors = {
-  baseColor: ThemeColors.WHITE,
-  bgColor: ThemeColors.BG,
-  fgColor: ThemeColors.FG,
+  bgColor: ThemeColors.WHITE,
+  bgColor_point: ThemeColors.BG_POINT,
+  bgColor_yellow: ThemeColors.BG_YELLOW,
+  fgColor: ThemeColors.BLACK,
   pColor: ThemeColors.POINT,
-  sColor: ThemeColors.SUB,
   fontColor: ThemeColors.BLACK,
+  sFontColor: ThemeColors.FONT
 };
 
 export const darkThemeColors = {
-  baseColor: ThemeColors.BLACK,
   bgColor: ThemeColors.BLACK,
+  bgColor_point: ThemeColors.BLACK,
+  bgColor_yellow: ThemeColors.BLACK,
   fgColor: ThemeColors.WHITE,
   pColor: ThemeColors.POINT,
-  sColor: ThemeColors.SUB,
   fontColor: ThemeColors.WHITE,
+  sFontColor: ThemeColors.FONT,
 };
 
 const globalVars = createGlobalTheme(':root', {
-  fontFamilly: {
-    notoSansKr: `var(--font-noto-sans-kr)`,
-    GasoekOne: `var(--font-gasoek-one)`,
+  font: {
+    familly: {
+      notoSansKr: `var(--font-noto-sans-kr)`,
+      GasoekOne: `var(--font-gasoek-one)`,
+    },
+    size: {
+      xLarge: '48px',
+      large: '34px',
+      medium: '24px',
+      regular: '18px',
+      small: '14px',
+      xSmall: '12px',
+    },
+    weight: {
+      regular: '400',
+      medium: '500',
+      bold: '700',
+    },
   },
   device: {
     pc: '1200px',
     mo: '370px',
-  },
-  fontSize: {
-    xLarge: '48px',
-    large: '34px',
-    medium: '24px',
-    regular: '18px',
-    small: '14px',
-    xSmall: '12px',
   },
   button: {
     size: {
@@ -62,7 +72,7 @@ const globalVars = createGlobalTheme(':root', {
       full: { width: '100%', height: '56px', borderWidth: '2px', fontSize: '16px' },
     },
     color: {
-      point: { bgColor: globalThemeColors.pColor, color: globalThemeColors.baseColor },
+      point: { bgColor: globalThemeColors.pColor, color: globalThemeColors.fgColor },
       outline: { bgColor: globalThemeColors.bgColor, color: globalThemeColors.pColor },
     },
   },

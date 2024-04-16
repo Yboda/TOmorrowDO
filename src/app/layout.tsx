@@ -32,7 +32,7 @@ export default function RootLayout({
     <html lang='ko' className={`${noto.variable} ${gasoek.variable}`} suppressHydrationWarning>
       <body>
         <GlobalThemeProvider>
-          <div>{children}</div>
+          {children}
         </GlobalThemeProvider>
       </body>
     </html>

@@ -1,3 +1,5 @@
+import { vars } from "./variable.css";
+
 export class Container {
   options: {};
 
@@ -12,6 +14,7 @@ export class Container {
       height: 'calc(100% - 50px)',
       borderRadius: '30px',
       padding: '50px',
+      backgroundColor: vars.color.bgColor_yellow,
       ...additionalOptions,
     };
   }

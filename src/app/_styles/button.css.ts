@@ -9,7 +9,6 @@ export const bdWidth = createVar();
 export const fontSize = createVar();
 
 export const button = style({
-  fontFamily: vars.fontFamilly.notoSansKr,
   outline: 'none',
   width: width,
   height: height,
@@ -19,7 +18,9 @@ export const button = style({
   borderWidth: bdWidth,
   borderRadius: '5px',
   borderStyle: 'double',
+  fontFamily: vars.font.familly.notoSansKr,
   fontSize: fontSize,
+  fontWeight: vars.font.weight.medium,
   cursor: 'pointer',
   ':hover': {
     opacity: 0.8,
