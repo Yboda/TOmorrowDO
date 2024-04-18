@@ -1,13 +1,14 @@
-import * as style from '../_styles/input.css'
+import * as style from '../_styles/input.css';
+import { forwardRef } from 'react';
 
-type InputType = 'text' | 'password' | 'radio' | 'select';
-type Props = {
-  type?: InputType;
-  placeholder?: string;
-};
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
-function Input({ type = 'text', placeholder }: Props) {
-  return <input type={type} placeholder={placeholder} className={style.Input} />;
-}
+const Input = forwardRef<HTMLInputElement, InputProps>(({ type, placeholder, ...props }, ref) => {
+  return (
+    <input className={style.Input} type={type} placeholder={placeholder} ref={ref} {...props} />
+  );
+});
+
+Input.displayName = 'Input';
 
 export default Input;

@@ -48,7 +48,7 @@ const globalVars = createGlobalTheme(':root', {
     },
     size: {
       xLarge: '48px',
-      large: '34px',
+      large: '36px',
       medium: '24px',
       regular: '18px',
       small: '14px',
