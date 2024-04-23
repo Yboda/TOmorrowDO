@@ -7,10 +7,12 @@ import { useRouter } from 'next/navigation';
 import { z } from 'zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import axios from 'axios';
 
 export default function SignupPage() {
   const router = useRouter();
   type User = z.infer<typeof UserSchema>;
+
   const {
     register,
     handleSubmit,
@@ -29,7 +31,25 @@ export default function SignupPage() {
     },
   });
 
-  const onSubmitHandler: SubmitHandler<User> = (data) => console.log('회원가입성공->', data);
+  interface ErrorData {
+    error: string,
+    message: string,
+    statusCode: number,
+  }
+
+  const onSubmitHandler: SubmitHandler<User> = async ({ email, nickname, password }) => {
+    try {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_DB_HOST}/auth/register/email`, {
+        email,
+        password,
+        nickname,
+      });
+      console.log(res);
+      // TODO: nextjs 로그인처리
+    } catch (err) {
+      if (axios.isAxiosError<ErrorData>(err)) alert(err.response?.data.message);
+    }
+  };
 
   return (
     <div className={style.container}>
@@ -50,7 +70,11 @@ export default function SignupPage() {
           </label>
           <label className={style.label}>
             <span className={style.required}>비밀번호</span>
-            <Input type='password' placeholder='비밀번호를 입력해주세요.' {...register('password')} />
+            <Input
+              type='password'
+              placeholder='비밀번호를 입력해주세요.'
+              {...register('password')}
+            />
             {errors.password && <p>{errors.password.message}</p>}
           </label>
           <label className={style.label}>

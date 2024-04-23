@@ -9,6 +9,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LoginInfoSchema } from '@/validators/authValidation';
 import { z } from 'zod';
+import axios from 'axios';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -29,8 +30,18 @@ export default function LoginPage() {
   });
 
   const onSubmitHandler: SubmitHandler<User> = async (data) => {
-    // 로그인 처리
-    console.log(data)
+    try {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_DB_HOST}/auth/login/email`, data, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Basic ${btoa(`${data.email}:${data.password}`)}`,
+        },
+      });
+      // TODO: nextjs 로그인처리
+      console.log(res.data);
+    } catch (err) {
+      alert('아이디 혹은 비밀번호가 일치하지 않습니다.')
+    }
   };
 
   return (
@@ -65,13 +76,13 @@ export default function LoginPage() {
       </div>
       <ul className={style.linkList}>
         <li className={style.linkItem}>
-          <Link href='/member/findId'>아이디 찾기</Link>
+          <Link href='/users/findId'>아이디 찾기</Link>
         </li>
         <li className={style.linkItem}>
-          <Link href='/member/findPw'>비밀번호 찾기</Link>
+          <Link href='/users/findPw'>비밀번호 찾기</Link>
         </li>
         <li className={style.linkItem}>
-          <Link href='/member/signup'>회원가입</Link>
+          <Link href='/users/signup'>회원가입</Link>
         </li>
       </ul>
     </div>
