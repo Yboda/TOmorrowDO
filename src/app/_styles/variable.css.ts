@@ -76,6 +76,9 @@ const globalVars = createGlobalTheme(':root', {
       outline: { bgColor: globalThemeColors.bgColor, color: globalThemeColors.pColor },
     },
   },
+  breakpoints: {
+    
+  }
 });
 
 export const vars = { ...globalVars, color: {...globalThemeColors} };

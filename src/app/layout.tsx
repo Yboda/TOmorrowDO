@@ -3,6 +3,7 @@ import { Noto_Sans_KR, Gasoek_One } from 'next/font/google';
 import './_styles/reset.css';
 import './_styles/globalTheme.css';
 import GlobalThemeProvider from './_contexts/GlobalThemeProvider';
+import AuthSessionProvider from './_contexts/AuthSessionProvider';
 
 export const noto = Noto_Sans_KR({
   display: 'swap',
@@ -16,7 +17,6 @@ export const gasoek = Gasoek_One({
   subsets: ['latin'],
   variable: '--font-gasoek-one',
 });
-
 
 export const metadata: Metadata = {
   title: 'TOmorrowDO',
@@ -32,7 +32,7 @@ export default function RootLayout({
     <html lang='ko' className={`${noto.variable} ${gasoek.variable}`} suppressHydrationWarning>
       <body>
         <GlobalThemeProvider>
-          {children}
+          <AuthSessionProvider>{children}</AuthSessionProvider>
         </GlobalThemeProvider>
       </body>
     </html>

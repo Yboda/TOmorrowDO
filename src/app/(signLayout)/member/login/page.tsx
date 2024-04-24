@@ -1,15 +1,16 @@
 'use client';
-import Button from '@/app/_components/Button';
 import { useRouter } from 'next/navigation';
-import * as style from './login.css';
-import Flex from '@/app/_components/Flex';
-import Input from '@/app/_components/Input';
-import Link from 'next/link';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LoginInfoSchema } from '@/validators/authValidation';
 import { z } from 'zod';
 import axios from 'axios';
+import * as style from './login.css';
+import Button from '@/app/_components/Button';
+import Flex from '@/app/_components/Flex';
+import Input from '@/app/_components/Input';
+import Link from 'next/link';
+import { signIn } from 'next-auth/react';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -31,16 +32,22 @@ export default function LoginPage() {
 
   const onSubmitHandler: SubmitHandler<User> = async (data) => {
     try {
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_DB_HOST}/auth/login/email`, data, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Basic ${btoa(`${data.email}:${data.password}`)}`,
-        },
-      });
+      // const res = await axios.post(`${process.env.NEXT_PUBLIC_DB_HOST}/auth/login/email`, data, {
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     Authorization: `Basic ${btoa(`${data.email}:${data.password}`)}`,
+      //   },
+      // });
+
       // TODO: nextjs 로그인처리
-      console.log(res.data);
+      await signIn('credentials', {
+        ...data,
+        redirect: false,
+      });
+      router.replace('/');
     } catch (err) {
-      alert('아이디 혹은 비밀번호가 일치하지 않습니다.')
+      alert('아이디 혹은 비밀번호가 일치하지 않습니다.');
+      console.log(err);
     }
   };
 

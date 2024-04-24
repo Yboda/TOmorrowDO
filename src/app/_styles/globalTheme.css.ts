@@ -6,7 +6,6 @@ import {
 
 export const lightGlobalTheme = createTheme(globalThemeColors, lightThemeColors);
 export const darkGlobalTheme = createTheme(globalThemeColors, darkThemeColors);
-
 globalStyle('*', {
   boxSizing: 'border-box',
 });
