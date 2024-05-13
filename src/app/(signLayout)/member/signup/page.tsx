@@ -8,6 +8,7 @@ import { z } from 'zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
+import { signIn } from 'next-auth/react';
 
 export default function SignupPage() {
   const router = useRouter();
@@ -39,13 +40,20 @@ export default function SignupPage() {
 
   const onSubmitHandler: SubmitHandler<User> = async ({ email, nickname, password }) => {
     try {
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_DB_HOST}/auth/register/email`, {
+      // 가입처리
+      await axios.post(`${process.env.NEXT_PUBLIC_DB_HOST}/auth/register/email`, {
         email,
         password,
         nickname,
       });
-      console.log(res);
-      // TODO: nextjs 로그인처리
+
+      // 로그인처리
+      await signIn('credentials', {
+        email,
+        password,
+        redirect: false,
+      });
+      router.replace('/');
     } catch (err) {
       if (axios.isAxiosError<ErrorData>(err)) alert(err.response?.data.message);
     }

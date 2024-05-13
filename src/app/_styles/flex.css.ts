@@ -4,6 +4,7 @@ export const fd = createVar();
 export const jc = createVar();
 export const ai = createVar();
 export const gap = createVar();
+export const position = createVar();
 export const width = createVar();
 export const height = createVar();
 
@@ -13,6 +14,7 @@ export const flex = style({
   justifyContent: jc,
   alignItems: ai,
   gap: gap,
+  position: position,
   width: width,
   height: height,
 });

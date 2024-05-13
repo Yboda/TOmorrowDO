@@ -8,6 +8,7 @@ type Props = {
     jc?: 'center' | 'space-between';
     ai?: 'center' | 'space-between';
     gap?: string;
+    position?: 'relative' | 'absolute' | 'fixed';
     width?: string;
     height?: string;
   };
@@ -22,6 +23,7 @@ function Flex({ children, options }: Props) {
         [style.jc]: options?.jc,
         [style.ai]: options?.ai,
         [style.gap]: options?.gap,
+        [style.position]: options?.position,
         [style.width]: options?.width,
         [style.height]: options?.height,
       })}
